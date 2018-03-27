@@ -64,6 +64,10 @@ class GameViewController: UIViewController {
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
+        
+        //Create a test orb
+        let orb = LightOrb()
+        scene.rootNode.addChildNode(orb)
     }
     
     @objc

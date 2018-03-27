@@ -13,6 +13,8 @@
 		EE6532AC206AD61F00AE4B1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE6532AA206AD61F00AE4B1C /* Main.storyboard */; };
 		EE6532AE206AD61F00AE4B1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE6532AD206AD61F00AE4B1C /* Assets.xcassets */; };
 		EE6532B1206AD61F00AE4B1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE6532AF206AD61F00AE4B1C /* LaunchScreen.storyboard */; };
+		EE8BBE05206ADECE00450A64 /* LightOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BBE04206ADECE00450A64 /* LightOrb.swift */; };
+		EE8BBE07206AE09100450A64 /* SpaceShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BBE06206AE09100450A64 /* SpaceShip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		EE6532AD206AD61F00AE4B1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE6532B0206AD61F00AE4B1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE6532B2206AD61F00AE4B1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE8BBE04206ADECE00450A64 /* LightOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightOrb.swift; sourceTree = "<group>"; };
+		EE8BBE06206AE09100450A64 /* SpaceShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceShip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				EE6532AD206AD61F00AE4B1C /* Assets.xcassets */,
 				EE6532AF206AD61F00AE4B1C /* LaunchScreen.storyboard */,
 				EE6532B2206AD61F00AE4B1C /* Info.plist */,
+				EE8BBE04206ADECE00450A64 /* LightOrb.swift */,
+				EE8BBE06206AE09100450A64 /* SpaceShip.swift */,
 			);
 			path = LightSpeed;
 			sourceTree = "<group>";
@@ -140,7 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE8BBE05206ADECE00450A64 /* LightOrb.swift in Sources */,
 				EE6532A9206AD61F00AE4B1C /* GameViewController.swift in Sources */,
+				EE8BBE07206AE09100450A64 /* SpaceShip.swift in Sources */,
 				EE6532A5206AD61F00AE4B1C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
