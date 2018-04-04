@@ -15,8 +15,8 @@ class LightOrb: SCNNode {
         geometry = sphere
         position.x = Float(drand48() * 8.0 - 4.0) // starting x
         position.y = Float(drand48() * 8.0 - 4.0) // starting y
-        position.z = 100 // starting z, start far away and move towards negative z
-        runAction(SCNAction.move(to: SCNVector3(position.x, position.y, -20.0), duration: 2))
+        position.z = -100 // starting z, start far away and move towards positive z
+        runAction(SCNAction.move(to: SCNVector3(position.x, position.y, 20.0), duration: 2))
     }
     
     required init?(coder aDecoder: NSCoder) {

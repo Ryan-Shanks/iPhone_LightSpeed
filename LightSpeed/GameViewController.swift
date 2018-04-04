@@ -10,13 +10,17 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-class GameViewController: UIViewController {
-
+class GameViewController: UIViewController, SCNSceneRendererDelegate{
+    private var orbs:[LightOrb] = []
+    private var orbsPassed = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //delegate so we can have frame by frame rendering
+        let scnview = self.view as! SCNView
+        scnview.delegate = self
         // create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene()
         
         // create and add a camera to the scene
         let cameraNode = SCNNode()
@@ -24,7 +28,7 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
         
         // create and add a light to the scene
         let lightNode = SCNNode()
@@ -39,12 +43,7 @@ class GameViewController: UIViewController {
         ambientLightNode.light!.type = .ambient
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
-        
-        // retrieve the ship node
-        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
-        
-        // animate the 3d object
-        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+    
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
@@ -52,18 +51,14 @@ class GameViewController: UIViewController {
         // set the scene to the view
         scnView.scene = scene
         
-        // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        // true allows the user to manipulate the camera
+        scnView.allowsCameraControl = false
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
         
         // configure the view
         scnView.backgroundColor = UIColor.black
-        
-        // add a tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        scnView.addGestureRecognizer(tapGesture)
         
         //Create a test orb
         let orb = LightOrb()
@@ -115,16 +110,18 @@ class GameViewController: UIViewController {
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+        return .landscape
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval){
+        print("Rendering")
+    }
+    func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval){
+        print("Applying animations")
+    }
 }
