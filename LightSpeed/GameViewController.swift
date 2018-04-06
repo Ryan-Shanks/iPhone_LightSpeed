@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import SpriteKit
 
 class GameViewController: UIViewController{
     
@@ -66,7 +67,9 @@ class GameViewController: UIViewController{
         scnView.autoenablesDefaultLighting = false
         
         //add the controls
-        scnView.overlaySKScene = ControlOverlay(game!)
+        let controls = ControlOverlay(fileNamed: "ControlOverlay.sks")
+        controls?.game = game
+        scnView.overlaySKScene = controls
     }
     
     @objc

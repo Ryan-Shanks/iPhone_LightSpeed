@@ -9,6 +9,7 @@
 import Foundation
 import SceneKit
 class GameLogic:NSObject, SCNSceneRendererDelegate {
+
     private var orbs:[LightOrb] = []
     private var orbsPassed = 0
     
@@ -16,6 +17,7 @@ class GameLogic:NSObject, SCNSceneRendererDelegate {
     init(_ scene: SCNScene){
         self.scene = scene
         let ship = SpaceShip()
+        ship.scale = SCNVector3(x:0.5, y:0.5,z:0.5)
         scene.rootNode.addChildNode(ship)
     }
     
@@ -37,4 +39,5 @@ class GameLogic:NSObject, SCNSceneRendererDelegate {
             }
         }
     }
+    
 }

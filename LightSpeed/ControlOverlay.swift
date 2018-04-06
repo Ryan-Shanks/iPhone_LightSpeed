@@ -10,16 +10,21 @@ import Foundation
 import SpriteKit
 import UIKit
 class ControlOverlay: SKScene {
-    private var game: GameLogic
-    init(_ game: GameLogic) {
-        self.game = game
-        super.init()
-        
-        // Add the arrows
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var game:GameLogic? = nil
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let location = touch.location(in:self)
+            let theNode = self.atPoint(location)
+            if theNode.name == "upButton"{
+                
+            } else if theNode.name == "downButton" {
+                
+            } else if theNode.name == "rightButton"{
+                
+            } else if theNode.name == "leftButton"{
+                
+            }
+        }
     }
 }

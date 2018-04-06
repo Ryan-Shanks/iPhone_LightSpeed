@@ -17,6 +17,8 @@
 		EE8BBE05206ADECE00450A64 /* LightOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BBE04206ADECE00450A64 /* LightOrb.swift */; };
 		EE8BBE07206AE09100450A64 /* SpaceShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BBE06206AE09100450A64 /* SpaceShip.swift */; };
 		EEA361DB20773F37002B3202 /* ControlOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA361DA20773F37002B3202 /* ControlOverlay.swift */; };
+		EED05FD6207745A0008CB99E /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EED05FD52077459F008CB99E /* arrow.png */; };
+		EED05FD820774C13008CB99E /* ControlOverlay.sks in Resources */ = {isa = PBXBuildFile; fileRef = EED05FD720774C13008CB99E /* ControlOverlay.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		EE8BBE04206ADECE00450A64 /* LightOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightOrb.swift; sourceTree = "<group>"; };
 		EE8BBE06206AE09100450A64 /* SpaceShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceShip.swift; sourceTree = "<group>"; };
 		EEA361DA20773F37002B3202 /* ControlOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlOverlay.swift; sourceTree = "<group>"; };
+		EED05FD52077459F008CB99E /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		EED05FD720774C13008CB99E /* ControlOverlay.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControlOverlay.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,17 +68,19 @@
 		EE6532A3206AD61F00AE4B1C /* LightSpeed */ = {
 			isa = PBXGroup;
 			children = (
-				EE443DC0207712F5006C514C /* GameLogic.swift */,
 				EE6532A4206AD61F00AE4B1C /* AppDelegate.swift */,
 				EE6532A6206AD61F00AE4B1C /* art.scnassets */,
-				EE6532A8206AD61F00AE4B1C /* GameViewController.swift */,
 				EE6532AA206AD61F00AE4B1C /* Main.storyboard */,
 				EE6532AD206AD61F00AE4B1C /* Assets.xcassets */,
+				EED05FD52077459F008CB99E /* arrow.png */,
 				EE6532AF206AD61F00AE4B1C /* LaunchScreen.storyboard */,
 				EE6532B2206AD61F00AE4B1C /* Info.plist */,
+				EE443DC0207712F5006C514C /* GameLogic.swift */,
+				EE6532A8206AD61F00AE4B1C /* GameViewController.swift */,
 				EE8BBE04206ADECE00450A64 /* LightOrb.swift */,
 				EE8BBE06206AE09100450A64 /* SpaceShip.swift */,
 				EEA361DA20773F37002B3202 /* ControlOverlay.swift */,
+				EED05FD720774C13008CB99E /* ControlOverlay.sks */,
 			);
 			path = LightSpeed;
 			sourceTree = "<group>";
@@ -140,7 +146,9 @@
 			files = (
 				EE6532A7206AD61F00AE4B1C /* art.scnassets in Resources */,
 				EE6532B1206AD61F00AE4B1C /* LaunchScreen.storyboard in Resources */,
+				EED05FD820774C13008CB99E /* ControlOverlay.sks in Resources */,
 				EE6532AE206AD61F00AE4B1C /* Assets.xcassets in Resources */,
+				EED05FD6207745A0008CB99E /* arrow.png in Resources */,
 				EE6532AC206AD61F00AE4B1C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
