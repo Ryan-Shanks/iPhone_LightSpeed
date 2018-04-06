@@ -16,6 +16,7 @@
 		EE6532B1206AD61F00AE4B1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE6532AF206AD61F00AE4B1C /* LaunchScreen.storyboard */; };
 		EE8BBE05206ADECE00450A64 /* LightOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BBE04206ADECE00450A64 /* LightOrb.swift */; };
 		EE8BBE07206AE09100450A64 /* SpaceShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8BBE06206AE09100450A64 /* SpaceShip.swift */; };
+		EEA361DB20773F37002B3202 /* ControlOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA361DA20773F37002B3202 /* ControlOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		EE6532B2206AD61F00AE4B1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE8BBE04206ADECE00450A64 /* LightOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightOrb.swift; sourceTree = "<group>"; };
 		EE8BBE06206AE09100450A64 /* SpaceShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceShip.swift; sourceTree = "<group>"; };
+		EEA361DA20773F37002B3202 /* ControlOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				EE6532B2206AD61F00AE4B1C /* Info.plist */,
 				EE8BBE04206ADECE00450A64 /* LightOrb.swift */,
 				EE8BBE06206AE09100450A64 /* SpaceShip.swift */,
+				EEA361DA20773F37002B3202 /* ControlOverlay.swift */,
 			);
 			path = LightSpeed;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			files = (
 				EE8BBE05206ADECE00450A64 /* LightOrb.swift in Sources */,
 				EE6532A9206AD61F00AE4B1C /* GameViewController.swift in Sources */,
+				EEA361DB20773F37002B3202 /* ControlOverlay.swift in Sources */,
 				EE8BBE07206AE09100450A64 /* SpaceShip.swift in Sources */,
 				EE443DC1207712F5006C514C /* GameLogic.swift in Sources */,
 				EE6532A5206AD61F00AE4B1C /* AppDelegate.swift in Sources */,

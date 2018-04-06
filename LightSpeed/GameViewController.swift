@@ -64,6 +64,9 @@ class GameViewController: UIViewController{
         
         //disable default lighting when there are no lights
         scnView.autoenablesDefaultLighting = false
+        
+        //add the controls
+        scnView.overlaySKScene = ControlOverlay(game!)
     }
     
     @objc
