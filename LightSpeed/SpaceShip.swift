@@ -30,6 +30,8 @@ class SpaceShip: SCNNode {
     }
     private func createWing(rotation:Float) -> SCNNode {
         let shape = SCNBox(width: 6, height: 0.1, length: 4, chamferRadius: 20)
+        //shape.firstMaterial?.emission.contents = UIColor.darkGray
+        //shape.firstMaterial?.emission.intensity = 0.5
         let node1 = SCNNode()
         let node2 = SCNNode()
         node1.rotation = SCNVector4(0,0,1, rotation * (Float.pi / 180.0))
@@ -42,8 +44,13 @@ class SpaceShip: SCNNode {
     }
     private func createBody() -> SCNNode{
         let body = SCNSphere()
+        body.firstMaterial?.shininess = 100
+        body.firstMaterial?.specular.contents = UIColor.white
         body.radius = 2.0
-        body.firstMaterial?.lightingModel = .physicallyBased
+        body.firstMaterial?.lightingModel = .phong
+        body.firstMaterial?.ambient.contents = UIColor.white
+        //body.firstMaterial?.emission.contents = UIColor.darkGray
+        //body.firstMaterial?.emission.intensity = 0.5
         
         let node = SCNNode()
         node.position.x = 0
