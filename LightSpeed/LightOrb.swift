@@ -10,6 +10,7 @@ import Foundation
 import SceneKit
 class LightOrb: SCNNode {
     let sphere = SCNSphere(radius: 1.0)
+    var finished = false
     override init(){
         super.init()
         geometry = sphere

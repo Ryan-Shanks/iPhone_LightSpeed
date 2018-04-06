@@ -13,14 +13,14 @@ import SceneKit
 class GameViewController: UIViewController, SCNSceneRendererDelegate{
     private var orbs:[LightOrb] = []
     private var orbsPassed = 0
+    private var scene = SCNScene()
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Creading view")
         
         //delegate so we can have frame by frame rendering
         let scnview = self.view as! SCNView
         scnview.delegate = self
-        // create a new scene
-        let scene = SCNScene()
         
         // create and add a camera to the scene
         let cameraNode = SCNNode()
@@ -52,17 +52,15 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
         scnView.scene = scene
         
         // true allows the user to manipulate the camera
-        scnView.allowsCameraControl = false
+        scnView.allowsCameraControl = true
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
         
         // configure the view
         scnView.backgroundColor = UIColor.black
-        
-        //Create a test orb
-        let orb = LightOrb()
-        scene.rootNode.addChildNode(orb)
+        let ship = SpaceShip()
+        scene.rootNode.addChildNode(ship)
     }
     
     @objc
@@ -119,9 +117,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate{
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval){
-        print("Rendering")
-    }
-    func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval){
-        print("Applying animations")
+        //print("Rendering")
+        //let orb = LightOrb()
+        //scene.rootNode.addChildNode(orb)
+        //orbs.append(orb)
     }
 }
