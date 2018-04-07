@@ -29,6 +29,12 @@ class GameViewController: UIViewController{
         // create and add a camera to the scene
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
+        //create a weak light at the camera so the scene never goes completely dark
+        let cl = SCNLight()
+        cl.color = UIColor.white
+        cl.type = .ambient
+        cl.intensity = 100
+        cameraNode.light = cl
         scene.rootNode.addChildNode(cameraNode)
         
         // place the camera

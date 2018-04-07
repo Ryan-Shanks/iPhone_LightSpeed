@@ -13,7 +13,7 @@ class SpaceShip: SCNNode {
     
     private var vertRotationNode = SCNNode() // easier to combine rotations if we just stick everything in this node, apply some rotations here and some on the main one
     
-    private let MOVE_SPEED = 3.0
+    private let MOVE_SPEED = 10.0
     private let ROTATION:Float = 30
     private let ROTATION_FLAT = SCNVector4(0,0,0,0)
     private let ROTATION_LEFT = SCNVector4(0,0,1, 30.0 * Double.pi / 180.0)
@@ -41,11 +41,18 @@ class SpaceShip: SCNNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    private func setMaterials(_ geo: SCNGeometry){
+        //geo.firstMaterial?.emission.contents = UIColor.darkGray
+        //geo.firstMaterial?.emission.intensity = 0.5
+        geo.firstMaterial?.lightingModel = .phong
+        geo.firstMaterial?.shininess = 70
+        geo.firstMaterial?.specular.contents = UIColor.white
+        geo.firstMaterial?.diffuse.contents = UIColor.white
+    }
     private func createWing(rotation:Float) -> SCNNode {
         let shape = SCNBox(width: 6, height: 0.1, length: 4, chamferRadius: 20)
-        //shape.firstMaterial?.emission.contents = UIColor.darkGray
-        //shape.firstMaterial?.emission.intensity = 0.5
-        shape.firstMaterial?.lightingModel = .phong
+        setMaterials(shape)
+        print(shape.materials)
         let node1 = SCNNode()
         let node2 = SCNNode()
         node1.rotation = SCNVector4(0,0,1, rotation * (Float.pi / 180.0))
@@ -58,20 +65,15 @@ class SpaceShip: SCNNode {
     }
     private func createBody() -> SCNNode{
         let body = SCNSphere()
-        body.firstMaterial?.shininess = 100
-        body.firstMaterial?.specular.contents = UIColor.white
-        body.radius = 2.0
-        body.firstMaterial?.lightingModel = .phong
-        //body.firstMaterial?.ambient.contents = UIColor.white
-        //body.firstMaterial?.emission.contents = UIColor.darkGray
-        //body.firstMaterial?.emission.intensity = 0.5
         
+        body.radius = 2.0
+        setMaterials(body)
         let node = SCNNode()
         node.position.x = 0
         node.position.y = 0
         node.position.z = 0
         node.geometry = body
-        node.scale = SCNVector3(x:1,y:1,z:3)
+        node.scale = SCNVector3(x:1,y:1,z:2)
         return node
     }
 

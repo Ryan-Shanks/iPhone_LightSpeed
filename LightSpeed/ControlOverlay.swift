@@ -20,13 +20,13 @@ class ControlOverlay: SKScene {
     //Convert the nodes name to one of the ArrowKeys options, or 0 for none
     private func buttonStringToInt(_ buttonName:String?) -> UInt8{
         switch (buttonName) {
-        case "upButton":
+        case "upButton"?:
             return ArrowKeys.UP
-        case "downButton":
+        case "downButton"?:
             return ArrowKeys.DOWN
-        case "leftButton":
+        case "leftButton"?:
             return ArrowKeys.LEFT
-        case "rightButton":
+        case "rightButton"?:
             return ArrowKeys.RIGHT
         default:
             return 0

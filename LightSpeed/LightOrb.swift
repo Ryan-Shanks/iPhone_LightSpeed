@@ -29,29 +29,16 @@ class LightOrb: SCNNode {
         position.z = -100 // starting z, start far away and move towards positive z
         
         //attach point light source
-        let lightNode1 = SCNNode()
-        lightNode1.position.x = 0
-        lightNode1.position.y = 0
-        lightNode1.position.z = -1
-        let l1 = SCNLight()
-        l1.color = colour
-        l1.type = .omni
-        lightNode1.light = l1
+        let lightNode = SCNNode()
+        lightNode.position.x = 0
+        lightNode.position.y = 0
+        lightNode.position.z = 0
+        let l = SCNLight()
+        l.color = colour
+        l.type = .omni
+        lightNode.light = l
         
-        //also create another light and node at the same location to have an ambient component
-        let lightNode2 = SCNNode()
-        lightNode2.position.x = 0
-        lightNode2.position.y = 0
-        lightNode2.position.z = -1
-        
-        let l2 = SCNLight()
-        l2.color = colour
-        l2.type = .ambient
-        l2.intensity = 200
-        lightNode2.light = l2
-        
-        addChildNode(lightNode1)
-        addChildNode(lightNode2)
+        addChildNode(lightNode)
         runAction(SCNAction.move(to: SCNVector3(position.x, position.y, 20.0), duration: getDuration(orbsPassed)))
     }
     
