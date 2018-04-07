@@ -21,6 +21,9 @@ class SpaceShip: SCNNode {
     private let ROTATION_UP = SCNVector4(1,0,0, 30 * Double.pi / 180)
     private let ROTATION_DOWN = SCNVector4(1,0,0, -30 * Double.pi / 180)
     
+    private let Y_BOUND:Float = 3.7
+    private let X_BOUND:Float = 5.5
+    
     private var keysDown: UInt8 = 0
     override init(){
         super.init()
@@ -50,18 +53,28 @@ class SpaceShip: SCNNode {
         geo.firstMaterial?.diffuse.contents = UIColor.white
     }
     private func createWing(rotation:Float) -> SCNNode {
-        let shape = SCNBox(width: 6, height: 0.1, length: 4, chamferRadius: 20)
-        setMaterials(shape)
-        print(shape.materials)
-        let node1 = SCNNode()
-        let node2 = SCNNode()
-        node1.rotation = SCNVector4(0,0,1, rotation * (Float.pi / 180.0))
-        node2.position.x = 4
-        node2.position.y = 0
-        node2.position.z = 0
-        node2.geometry = shape
-        node1.addChildNode(node2)
-        return node1
+        let nodeWing = SCNNode()
+        let body = SCNBox(width: 6, height: 0.1, length: 4, chamferRadius: 0)
+        setMaterials(body)
+        print(body.materials)
+        nodeWing.geometry = body
+        
+        let nodeWingTip = SCNNode()
+        let wingTipGeo = SCNBox(width: sqrt(8), height: 0.1, length: sqrt(8), chamferRadius: 0)
+        setMaterials(wingTipGeo)
+        nodeWingTip.geometry = wingTipGeo
+        nodeWingTip.position.x = 3
+        nodeWingTip.rotation = SCNVector4(0,1,0,GLKMathDegreesToRadians(45))
+        nodeWing.addChildNode(nodeWingTip)
+        
+        let rotationNode = SCNNode()
+        rotationNode.rotation = SCNVector4(0,0,1, rotation * (Float.pi / 180.0))
+        nodeWing.position.x = 4
+        nodeWing.position.y = 0
+        nodeWing.position.z = 0
+        nodeWing.geometry = body
+        rotationNode.addChildNode(nodeWing)
+        return rotationNode
     }
     private func createBody() -> SCNNode{
         let body = SCNSphere()
@@ -80,6 +93,21 @@ class SpaceShip: SCNNode {
     func setKeysDown(_ keysPressed:UInt8){
         keysDown = keysPressed
     }
+    
+    func keepInBounds() {
+        if position.x < -X_BOUND {
+            position.x = -X_BOUND
+        }else if position.x > X_BOUND {
+            position.x = X_BOUND
+        }
+        
+        if position.y < -Y_BOUND{
+            position.y = -Y_BOUND
+        } else if position.y > Y_BOUND {
+            position.y = Y_BOUND
+        }
+    }
+    
     func tick(elapsed: TimeInterval){
         
         if keysDown & ArrowKeys.VERT == ArrowKeys.UP{
@@ -102,6 +130,7 @@ class SpaceShip: SCNNode {
         }else {
             rotation = ROTATION_FLAT
         }
+        keepInBounds()
         //print("Position x ", position.x, " y ", position.y)
     }
 }

@@ -39,7 +39,7 @@ class LightOrb: SCNNode {
         lightNode.light = l
         
         addChildNode(lightNode)
-        runAction(SCNAction.move(to: SCNVector3(position.x, position.y, 20.0), duration: getDuration(orbsPassed)))
+        runAction(SCNAction.move(to: SCNVector3(position.x, position.y, 100.0), duration: getDuration(orbsPassed)))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,7 +47,10 @@ class LightOrb: SCNNode {
     }
     // check if the orb has passed the ship, if it has it should be deleted
     func hasPassed() -> Bool {
-        return position.z >= 20.0
+        return position.z >= 0
+    }
+    func hasFinishedTravel() -> Bool {
+        return position.z >= 100
     }
     private func randBetween(_ lower: Float, _ upper:Float) -> Float {
         return Float(drand48()) * (upper-lower) + lower

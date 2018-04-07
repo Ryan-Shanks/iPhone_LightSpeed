@@ -20,7 +20,8 @@ struct ArrowKeys{
 }
 class GameLogic:NSObject, SCNSceneRendererDelegate {
 
-    private var orbs:[LightOrb] = []
+    private var orbsInFront:[LightOrb] = []
+    private var orbsBehind: [LightOrb] = []
     private var orbsPassed = 0
     private var ship:SpaceShip
     private var timeOfLastUpdate:TimeInterval = 0
@@ -35,21 +36,31 @@ class GameLogic:NSObject, SCNSceneRendererDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval){
-        if (Double(orbs.count) < sqrt(Double(orbsPassed)) || orbsPassed == 0 && orbs.count == 0){
+        if (Double(orbsInFront.count) < sqrt(Double(orbsPassed)) || orbsPassed == 0 && orbsInFront.count == 0){
             // need to create another orb
             let orb = LightOrb(orbsPassed: orbsPassed)
             scene.rootNode.addChildNode(orb)
-            orbs.append(orb)
+            orbsInFront.append(orb)
         }
-        if (orbs.count > 0){
-            for i in stride(from: orbs.count-1, through: 0, by:-1){
-                if orbs[i].hasPassed() {
-                    orbs[i].removeFromParentNode()
-                    orbs.remove(at: i)
+        if (orbsInFront.count > 0){
+            //check for orbs which have passed the ship
+            for i in stride(from: orbsInFront.count-1, through: 0, by:-1){
+                if orbsInFront[i].hasPassed() {
                     orbsPassed += 1
+                    controls?.setOrbsPassed(orbsPassed)
+                    // move the orb to orbsBehind
+                    let orb = orbsInFront.remove(at: i)
+                    orbsBehind.append(orb)
                 }
             }
-            controls?.setOrbsPassed(orbsPassed)
+            //check for orbs which are far enough past the ship to be deleted
+            for i in stride(from: orbsBehind.count-1, through: 0, by:-1){
+                if orbsBehind[i].hasFinishedTravel() {
+                    orbsBehind[i].removeFromParentNode()
+                    orbsBehind.remove(at: i)
+                    print("removing orb")
+                }
+            }
         }
         //so the ship can fly smoothly if the user is still holding the button
         if timeOfLastUpdate != 0 {
