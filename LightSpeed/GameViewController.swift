@@ -55,7 +55,7 @@ class GameViewController: UIViewController{
         scnView.scene = scene
         
         // true allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -70,11 +70,6 @@ class GameViewController: UIViewController{
         let controls = ControlOverlay(fileNamed: "ControlOverlay.sks")
         controls?.game = game
         scnView.overlaySKScene = controls
-    }
-    
-    @objc
-    func handleTap(_ gestureRecognize: UIGestureRecognizer) {
-        
     }
     
     override var shouldAutorotate: Bool {

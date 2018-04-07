@@ -43,8 +43,9 @@ class ControlOverlay: SKScene {
             let theNode = self.atPoint(location)
             let num = buttonStringToInt(theNode.name)
             self.touches[touch] = num // new touch occured, store in the map for now
-            game?.handleKeys(allKeysToInt())
         }
+        game?.handleKeys(allKeysToInt())
+        print ("Touches began ", self.touches.count)
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
             // if a touch moved, need to check if its still on the button or not
@@ -54,6 +55,7 @@ class ControlOverlay: SKScene {
             self.touches[touch] = buttonStringToInt(theNode.name)
         }
         game?.handleKeys(allKeysToInt())
+        print("TouchesMoved", self.touches.count)
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch:UITouch in touches {
@@ -61,5 +63,9 @@ class ControlOverlay: SKScene {
             print("cancelling a touch")
         }
         game?.handleKeys(allKeysToInt())
+        print("touchesEnded", self.touches.count)
+    }
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("Touches cancelled")
     }
 }

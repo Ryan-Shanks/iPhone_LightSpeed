@@ -23,6 +23,7 @@ class GameLogic:NSObject, SCNSceneRendererDelegate {
     private var orbs:[LightOrb] = []
     private var orbsPassed = 0
     private var ship:SpaceShip
+    private var timeOfLastUpdate:TimeInterval = 0
     
     private var scene:SCNScene
     init(_ scene: SCNScene){
@@ -49,8 +50,13 @@ class GameLogic:NSObject, SCNSceneRendererDelegate {
                 }
             }
         }
+        //so the ship can fly smoothly if the user is still holding the button
+        if timeOfLastUpdate != 0 {
+            ship.tick(elapsed: time - timeOfLastUpdate)
+        }
+        timeOfLastUpdate = time
     }
     func handleKeys(_ keysPressed:UInt8){
-        ship.handleKeys(keysPressed)
+        ship.setKeysDown(keysPressed)
     }
 }

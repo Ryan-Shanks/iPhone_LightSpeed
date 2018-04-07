@@ -11,12 +11,17 @@ import Foundation
 import SceneKit
 class SpaceShip: SCNNode {
     
-    private let MOVE_SPEED = 1
+    private var vertRotationNode = SCNNode() // easier to combine rotations if we just stick everything in this node, apply some rotations here and some on the main one
+    
+    private let MOVE_SPEED = 3.0
+    private let ROTATION:Float = 30
     private let ROTATION_FLAT = SCNVector4(0,0,0,0)
     private let ROTATION_LEFT = SCNVector4(0,0,1, 30.0 * Double.pi / 180.0)
     private let ROTATION_RIGHT = SCNVector4(0,0,1, -30.0 * Double.pi / 180.0)
     private let ROTATION_UP = SCNVector4(1,0,0, 30 * Double.pi / 180)
     private let ROTATION_DOWN = SCNVector4(1,0,0, -30 * Double.pi / 180)
+    
+    private var keysDown: UInt8 = 0
     override init(){
         super.init()
         let bodyNode = createBody()
@@ -25,11 +30,12 @@ class SpaceShip: SCNNode {
         let rightUpperWing = createWing(rotation: 165)
         let rightLowerWing = createWing(rotation: 195)
         
-        addChildNode(bodyNode)
-        addChildNode(leftUpperWing)
-        addChildNode(leftLowerWing)
-        addChildNode(rightUpperWing)
-        addChildNode(rightLowerWing)
+        vertRotationNode.addChildNode(bodyNode)
+        vertRotationNode.addChildNode(leftUpperWing)
+        vertRotationNode.addChildNode(leftLowerWing)
+        vertRotationNode.addChildNode(rightUpperWing)
+        vertRotationNode.addChildNode(rightLowerWing)
+        addChildNode(vertRotationNode)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,25 +74,32 @@ class SpaceShip: SCNNode {
         node.scale = SCNVector3(x:1,y:1,z:3)
         return node
     }
-    func handleKeys(_ keysPressed:UInt8){
-        if keysPressed & ArrowKeys.VERT == ArrowKeys.VERT {
-            //both up and down pressed, ignore
-        } else if keysPressed & ArrowKeys.UP == ArrowKeys.UP{
-            position.y += 1
-            rotation = ROTATION_UP
-        } else if keysPressed & ArrowKeys.DOWN == ArrowKeys.DOWN {
-            position.y -= 1
-            rotation = ROTATION_DOWN
+
+    func setKeysDown(_ keysPressed:UInt8){
+        keysDown = keysPressed
+    }
+    func tick(elapsed: TimeInterval){
+        
+        if keysDown & ArrowKeys.VERT == ArrowKeys.UP{
+            position.y += Float(MOVE_SPEED * elapsed)
+            vertRotationNode.rotation = ROTATION_UP
+        } else if keysDown & ArrowKeys.VERT == ArrowKeys.DOWN {
+            position.y -= Float(MOVE_SPEED * elapsed)
+            vertRotationNode.rotation = ROTATION_DOWN
+        } else {
+            vertRotationNode.rotation = ROTATION_FLAT
         }
         
-        if keysPressed & ArrowKeys.HORIZ == ArrowKeys.HORIZ {
-            //Ignore, pressed both horizontal keys
-        } else if keysPressed & ArrowKeys.LEFT == ArrowKeys.LEFT {
-            position.x -= 1
+        
+        if keysDown & ArrowKeys.HORIZ == ArrowKeys.LEFT {
+            position.x -= Float(MOVE_SPEED * elapsed)
             rotation = ROTATION_LEFT
-        } else if keysPressed & ArrowKeys.RIGHT == ArrowKeys.RIGHT {
-            position.x += 1
+        } else if keysDown & ArrowKeys.HORIZ == ArrowKeys.RIGHT {
+            position.x += Float(MOVE_SPEED * elapsed)
             rotation = ROTATION_RIGHT
+        }else {
+            rotation = ROTATION_FLAT
         }
+        //print("Position x ", position.x, " y ", position.y)
     }
 }

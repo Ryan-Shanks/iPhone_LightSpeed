@@ -21,6 +21,8 @@ class LightOrb: SCNNode {
         sphere.firstMaterial?.lightingModel = .phong
         let colour = LightOrb.colorOptions[Int(randBetween(0.0, Float(LightOrb.colorOptions.count-1)))]
         sphere.firstMaterial?.emission.contents = colour
+        sphere.firstMaterial?.ambient.contents = colour
+        sphere.firstMaterial?.diffuse.contents = colour
         
         position.x = randBetween(-5,5) // starting x
         position.y = randBetween(-5,5) // starting y
