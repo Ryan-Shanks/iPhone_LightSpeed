@@ -39,6 +39,10 @@ class SpaceShip: SCNNode {
         vertRotationNode.addChildNode(rightUpperWing)
         vertRotationNode.addChildNode(rightLowerWing)
         addChildNode(vertRotationNode)
+        
+        physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: self, options: nil))
+        physicsBody?.categoryBitMask = PhysicsCategory.Ship
+        physicsBody?.contactTestBitMask = PhysicsCategory.Orb
     }
     
     required init?(coder aDecoder: NSCoder) {

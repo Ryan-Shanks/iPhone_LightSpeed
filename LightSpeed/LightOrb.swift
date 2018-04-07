@@ -24,6 +24,10 @@ class LightOrb: SCNNode {
         sphere.firstMaterial?.ambient.contents = colour
         sphere.firstMaterial?.diffuse.contents = colour
         
+        physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: self, options: nil))
+        physicsBody?.categoryBitMask = PhysicsCategory.Orb
+        physicsBody?.contactTestBitMask = PhysicsCategory.Ship
+        
         position.x = randBetween(-5,5) // starting x
         position.y = randBetween(-5,5) // starting y
         position.z = -100 // starting z, start far away and move towards positive z
