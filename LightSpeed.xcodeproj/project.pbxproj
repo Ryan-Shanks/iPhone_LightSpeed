@@ -73,6 +73,7 @@
 				EE6532AA206AD61F00AE4B1C /* Main.storyboard */,
 				EE6532AD206AD61F00AE4B1C /* Assets.xcassets */,
 				EED05FD52077459F008CB99E /* arrow.png */,
+				EED05FD720774C13008CB99E /* ControlOverlay.sks */,
 				EE6532AF206AD61F00AE4B1C /* LaunchScreen.storyboard */,
 				EE6532B2206AD61F00AE4B1C /* Info.plist */,
 				EE443DC0207712F5006C514C /* GameLogic.swift */,
@@ -80,7 +81,6 @@
 				EE8BBE04206ADECE00450A64 /* LightOrb.swift */,
 				EE8BBE06206AE09100450A64 /* SpaceShip.swift */,
 				EEA361DA20773F37002B3202 /* ControlOverlay.swift */,
-				EED05FD720774C13008CB99E /* ControlOverlay.sks */,
 			);
 			path = LightSpeed;
 			sourceTree = "<group>";

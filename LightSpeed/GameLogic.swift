@@ -8,15 +8,26 @@
 
 import Foundation
 import SceneKit
+
+struct ArrowKeys{
+    static let UP:UInt8 = 0b1
+    static let DOWN:UInt8 = 0b10
+    static let LEFT:UInt8 = 0b100
+    static let RIGHT:UInt8 = 0b1000
+    
+    static let VERT:UInt8 = UP|DOWN
+    static let HORIZ:UInt8 = RIGHT|LEFT
+}
 class GameLogic:NSObject, SCNSceneRendererDelegate {
 
     private var orbs:[LightOrb] = []
     private var orbsPassed = 0
+    private var ship:SpaceShip
     
     private var scene:SCNScene
     init(_ scene: SCNScene){
         self.scene = scene
-        let ship = SpaceShip()
+        ship = SpaceShip()
         ship.scale = SCNVector3(x:0.5, y:0.5,z:0.5)
         scene.rootNode.addChildNode(ship)
     }
@@ -39,5 +50,7 @@ class GameLogic:NSObject, SCNSceneRendererDelegate {
             }
         }
     }
-    
+    func handleKeys(_ keysPressed:UInt8){
+        ship.handleKeys(keysPressed)
+    }
 }

@@ -10,6 +10,13 @@
 import Foundation
 import SceneKit
 class SpaceShip: SCNNode {
+    
+    private let MOVE_SPEED = 1
+    private let ROTATION_FLAT = SCNVector4(0,0,0,0)
+    private let ROTATION_LEFT = SCNVector4(0,0,1, 30.0 * Double.pi / 180.0)
+    private let ROTATION_RIGHT = SCNVector4(0,0,1, -30.0 * Double.pi / 180.0)
+    private let ROTATION_UP = SCNVector4(1,0,0, 30 * Double.pi / 180)
+    private let ROTATION_DOWN = SCNVector4(1,0,0, -30 * Double.pi / 180)
     override init(){
         super.init()
         let bodyNode = createBody()
@@ -32,6 +39,7 @@ class SpaceShip: SCNNode {
         let shape = SCNBox(width: 6, height: 0.1, length: 4, chamferRadius: 20)
         //shape.firstMaterial?.emission.contents = UIColor.darkGray
         //shape.firstMaterial?.emission.intensity = 0.5
+        shape.firstMaterial?.lightingModel = .phong
         let node1 = SCNNode()
         let node2 = SCNNode()
         node1.rotation = SCNVector4(0,0,1, rotation * (Float.pi / 180.0))
@@ -48,7 +56,7 @@ class SpaceShip: SCNNode {
         body.firstMaterial?.specular.contents = UIColor.white
         body.radius = 2.0
         body.firstMaterial?.lightingModel = .phong
-        body.firstMaterial?.ambient.contents = UIColor.white
+        //body.firstMaterial?.ambient.contents = UIColor.white
         //body.firstMaterial?.emission.contents = UIColor.darkGray
         //body.firstMaterial?.emission.intensity = 0.5
         
@@ -59,5 +67,26 @@ class SpaceShip: SCNNode {
         node.geometry = body
         node.scale = SCNVector3(x:1,y:1,z:3)
         return node
+    }
+    func handleKeys(_ keysPressed:UInt8){
+        if keysPressed & ArrowKeys.VERT == ArrowKeys.VERT {
+            //both up and down pressed, ignore
+        } else if keysPressed & ArrowKeys.UP == ArrowKeys.UP{
+            position.y += 1
+            rotation = ROTATION_UP
+        } else if keysPressed & ArrowKeys.DOWN == ArrowKeys.DOWN {
+            position.y -= 1
+            rotation = ROTATION_DOWN
+        }
+        
+        if keysPressed & ArrowKeys.HORIZ == ArrowKeys.HORIZ {
+            //Ignore, pressed both horizontal keys
+        } else if keysPressed & ArrowKeys.LEFT == ArrowKeys.LEFT {
+            position.x -= 1
+            rotation = ROTATION_LEFT
+        } else if keysPressed & ArrowKeys.RIGHT == ArrowKeys.RIGHT {
+            position.x += 1
+            rotation = ROTATION_RIGHT
+        }
     }
 }
