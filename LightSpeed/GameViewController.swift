@@ -15,6 +15,7 @@ class GameViewController: UIViewController{
     
     private var scene = SCNScene()
     private var game: GameLogic? = nil
+    private var controls:ControlOverlay? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,9 +68,10 @@ class GameViewController: UIViewController{
         scnView.autoenablesDefaultLighting = false
         
         //add the controls
-        let controls = ControlOverlay(fileNamed: "ControlOverlay.sks")
+        controls = ControlOverlay(fileNamed: "ControlOverlay.sks")
         controls?.game = game
         scnView.overlaySKScene = controls
+        game?.controls = controls
     }
     
     override var shouldAutorotate: Bool {

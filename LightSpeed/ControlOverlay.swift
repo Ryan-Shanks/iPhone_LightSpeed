@@ -13,6 +13,10 @@ class ControlOverlay: SKScene {
     var game:GameLogic? = nil
     var touches:[UITouch: UInt8] = [:]
     
+    func setOrbsPassed(_ passed:Int) {
+        (childNode(withName: "orbsPassed") as! SKLabelNode).text = String(passed)
+    }
+    
     //Convert the nodes name to one of the ArrowKeys options, or 0 for none
     private func buttonStringToInt(_ buttonName:String?) -> UInt8{
         switch (buttonName) {

@@ -24,6 +24,7 @@ class GameLogic:NSObject, SCNSceneRendererDelegate {
     private var orbsPassed = 0
     private var ship:SpaceShip
     private var timeOfLastUpdate:TimeInterval = 0
+    var controls: ControlOverlay? = nil
     
     private var scene:SCNScene
     init(_ scene: SCNScene){
@@ -46,9 +47,9 @@ class GameLogic:NSObject, SCNSceneRendererDelegate {
                     orbs[i].removeFromParentNode()
                     orbs.remove(at: i)
                     orbsPassed += 1
-                    print("orbsPassed: " , orbsPassed)
                 }
             }
+            controls?.setOrbsPassed(orbsPassed)
         }
         //so the ship can fly smoothly if the user is still holding the button
         if timeOfLastUpdate != 0 {
