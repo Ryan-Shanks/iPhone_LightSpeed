@@ -64,9 +64,9 @@ class SpaceShip: SCNNode{
         print(body.materials)
         nodeWing.geometry = body
         
-        nodeWing.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: body, options: nil))
-        nodeWing.physicsBody?.categoryBitMask = PhysicsCategory.Ship
-        nodeWing.physicsBody?.contactTestBitMask = PhysicsCategory.Orb
+        //nodeWing.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: nodeWing, options: nil))
+        //nodeWing.physicsBody?.categoryBitMask = PhysicsCategory.Ship
+        //nodeWing.physicsBody?.contactTestBitMask = PhysicsCategory.Orb
         
         let nodeWingTip = SCNNode()
         let wingTipGeo = SCNBox(width: sqrt(8), height: 0.1, length: sqrt(8), chamferRadius: 0)
@@ -76,9 +76,9 @@ class SpaceShip: SCNNode{
         nodeWingTip.position.x = 3
         nodeWingTip.rotation = SCNVector4(0,1,0,GLKMathDegreesToRadians(45))
         
-        nodeWingTip.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: wingTipGeo, options: nil))
-        nodeWingTip.physicsBody?.categoryBitMask = PhysicsCategory.Ship
-        nodeWingTip.physicsBody?.contactTestBitMask = PhysicsCategory.Orb
+        //nodeWingTip.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: wingTipGeo, options: nil))
+        //nodeWingTip.physicsBody?.categoryBitMask = PhysicsCategory.Ship
+        //nodeWingTip.physicsBody?.contactTestBitMask = PhysicsCategory.Orb
         
         nodeWing.addChildNode(nodeWingTip)
         

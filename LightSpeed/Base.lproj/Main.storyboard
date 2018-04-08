@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6QL-1Q-69Z">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,6 +23,60 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="740" y="746"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="Mwu-Dt-kv3">
+            <objects>
+                <viewController id="6QL-1Q-69Z" customClass="MenuViewController" customModule="LightSpeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iJd-gS-jQy">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LightSpeed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiC-NZ-562">
+                                <rect key="frame" x="204" y="61" width="260" height="65.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="57"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ov-Dm-isU">
+                                <rect key="frame" x="309" y="225" width="48" height="50"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="30"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="Pso-GA-JhB"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Scores:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lr-w8-PKF">
+                                <rect key="frame" x="0.0" y="126" width="667" height="98.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="9ov-Dm-isU" firstAttribute="centerY" secondItem="iJd-gS-jQy" secondAttribute="centerY" multiplier="4/3" id="0ao-rF-xtk"/>
+                            <constraint firstItem="OiC-NZ-562" firstAttribute="centerY" secondItem="iJd-gS-jQy" secondAttribute="centerY" multiplier="1/2" id="AeR-fw-kZ3"/>
+                            <constraint firstItem="1lr-w8-PKF" firstAttribute="top" secondItem="OiC-NZ-562" secondAttribute="bottom" id="DFS-ER-YZ9"/>
+                            <constraint firstItem="9ov-Dm-isU" firstAttribute="centerX" secondItem="iJd-gS-jQy" secondAttribute="centerX" id="LXA-l4-O9m"/>
+                            <constraint firstItem="9ov-Dm-isU" firstAttribute="top" secondItem="1lr-w8-PKF" secondAttribute="bottom" id="NYp-zu-b8c"/>
+                            <constraint firstItem="OiC-NZ-562" firstAttribute="centerX" secondItem="iJd-gS-jQy" secondAttribute="centerX" id="V9l-Jv-3JB"/>
+                            <constraint firstItem="1lr-w8-PKF" firstAttribute="leading" secondItem="asI-25-wmw" secondAttribute="leading" id="bFm-G9-mPJ"/>
+                            <constraint firstItem="asI-25-wmw" firstAttribute="bottom" secondItem="9ov-Dm-isU" secondAttribute="bottom" constant="100" id="m5r-T0-cXA"/>
+                            <constraint firstItem="asI-25-wmw" firstAttribute="trailing" secondItem="1lr-w8-PKF" secondAttribute="trailing" id="yRA-u4-PNo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="asI-25-wmw"/>
+                    </view>
+                    <connections>
+                        <outlet property="topScores" destination="1lr-w8-PKF" id="o4M-Dt-pdj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ilU-v5-7vh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-93.103448275862078" y="744.79999999999995"/>
         </scene>
     </scenes>
 </document>

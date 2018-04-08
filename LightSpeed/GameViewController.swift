@@ -11,7 +11,7 @@ import QuartzCore
 import SceneKit
 import SpriteKit
 
-class GameViewController: UIViewController{
+class GameViewController: UIViewController, SCNPhysicsContactDelegate{
     
     private var scene = SCNScene()
     private var game: GameLogic? = nil
@@ -65,7 +65,7 @@ class GameViewController: UIViewController{
         scnView.allowsCameraControl = false
         
         // show statistics such as fps and timing information
-        scnView.showsStatistics = true
+        scnView.showsStatistics = false
         
         // configure the view
         scnView.backgroundColor = UIColor.black
@@ -78,7 +78,7 @@ class GameViewController: UIViewController{
         controls?.game = game
         scnView.overlaySKScene = controls
         game?.controls = controls
-        scene.physicsWorld.contactDelegate = game
+        scene.physicsWorld.contactDelegate = self
     }
     
     override var shouldAutorotate: Bool {
@@ -97,6 +97,25 @@ class GameViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-    
+	func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+		let defaults = UserDefaults.standard
+		
+		var top: [Int] = []
+		if let array = defaults.array(forKey: "scores") as? [Int] {
+			top = array
+		}
+		print("oldtop: \(top)")
+		var topSet = Set<Int>(top)
+		topSet.insert(game!.orbsPassed)
+		top = Array(topSet)
+		top.sort(by: >)
+		top = Array(top.prefix(5))
+		
+		print("newtop: \(top)")
+		
+		defaults.setValue(top, forKey: "scores")
+		defaults.synchronize()
+		dismiss(animated: true, completion: nil)
+	}
 
 }
