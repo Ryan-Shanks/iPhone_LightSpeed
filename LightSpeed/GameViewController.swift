@@ -20,41 +20,27 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         game = GameLogic(scene)
-        print("Creading view")
+        //print("Creating view")
         
-        //delegate so we can have frame by frame rendering
+        //delegate so we can have frame by frame logic
         let scnview = self.view as! SCNView
         scnview.delegate = game
         
         // create and add a camera to the scene
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
+        
         //create a weak light at the camera so the scene never goes completely dark
         let cl = SCNLight()
         cl.color = UIColor.white
         cl.type = .ambient
-        cl.intensity = 100
+        cl.intensity = 50
         cameraNode.light = cl
         scene.rootNode.addChildNode(cameraNode)
         
         // place the camera
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
-        
-        // create and add a light to the scene
-        //let lightNode = SCNNode()
-        //lightNode.light = SCNLight()
-        //lightNode.light!.type = .omni
-        //lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        //scene.rootNode.addChildNode(lightNode)
-        
-        // create and add an ambient light to the scene
-        //let ambientLightNode = SCNNode()
-        //ambientLightNode.light = SCNLight()
-        //ambientLightNode.light!.type = .ambient
-        //ambientLightNode.light!.color = UIColor.darkGray
-        //scene.rootNode.addChildNode(ambientLightNode)
-    
-        
+
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         
@@ -75,14 +61,14 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate{
         
         //add the controls
         controls = ControlOverlay(fileNamed: "ControlOverlay.sks")
-        controls?.game = game
-        scnView.overlaySKScene = controls
-        game?.controls = controls
-        scene.physicsWorld.contactDelegate = self
+        controls?.game = game // give the controls a reference to the game controller to send key presses
+        scnView.overlaySKScene = controls // have the controls render on top of the scenekit window
+        game?.controls = controls // also give the game a reference to the controls so it can update the score
+        scene.physicsWorld.contactDelegate = self // Contact between the ship and an orb (game over) will be handled here, so we can unwind back to the menu
     }
     
     override var shouldAutorotate: Bool {
-        return true
+        return true // but only supports the 2 landscape configurations
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -97,6 +83,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate{
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
+    // Game over, store 5 highest scores in UserDefaults
 	func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
 		let defaults = UserDefaults.standard
 		
@@ -104,14 +91,13 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate{
 		if let array = defaults.array(forKey: "scores") as? [Int] {
 			top = array
 		}
-		print("oldtop: \(top)")
 		var topSet = Set<Int>(top)
 		topSet.insert(game!.orbsPassed)
 		top = Array(topSet)
 		top.sort(by: >)
 		top = Array(top.prefix(5))
-		
-		print("newtop: \(top)")
+        
+        defaults.setValue(top.contains(game!.orbsPassed), forKey: "isHighScore")
 		
 		defaults.setValue(top, forKey: "scores")
 		defaults.synchronize()

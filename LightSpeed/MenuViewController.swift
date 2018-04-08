@@ -15,17 +15,20 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
 		
     }
-	
+	//Show the top scores, can get them from user defaults as they will already have been sent there by the gameviewcontoller
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
 		let defaults = UserDefaults.standard
-		
 		let scores = defaults.array(forKey: "scores") as? [Int] ?? []
-		
-		let scoresString = scores.map {
+		var scoresString = scores.map {
 			$0.description
 		}.joined(separator: ", ")
+        
+        if defaults.bool(forKey: "isHighScore") {
+            scoresString += "\nHigh Score!"
+        }
+        
 		topScores.text = "High Scores: \(scoresString)"
 	}
 
@@ -33,16 +36,4 @@ class MenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-	
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

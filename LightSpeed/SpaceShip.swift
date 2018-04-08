@@ -21,8 +21,8 @@ class SpaceShip: SCNNode{
     private let ROTATION_UP = SCNVector4(1,0,0, 30 * Double.pi / 180)
     private let ROTATION_DOWN = SCNVector4(1,0,0, -30 * Double.pi / 180)
     
-    private let Y_BOUND:Float = 3.7
-    private let X_BOUND:Float = 5.5
+    private let Y_BOUND:Float = 3.9
+    private let X_BOUND:Float = 5.8
     
     private var keysDown: UInt8 = 0
     override init(){
@@ -40,6 +40,8 @@ class SpaceShip: SCNNode{
         vertRotationNode.addChildNode(rightLowerWing)
         addChildNode(vertRotationNode)
         
+        scale = SCNVector3(x:0.4, y:0.4,z:0.4)
+        
         physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: self, options: nil))
         physicsBody?.categoryBitMask = PhysicsCategory.Ship
         physicsBody?.contactTestBitMask = PhysicsCategory.Orb
@@ -50,24 +52,22 @@ class SpaceShip: SCNNode{
         fatalError("init(coder:) has not been implemented")
     }
     private func setMaterials(_ geo: SCNGeometry){
-        //geo.firstMaterial?.emission.contents = UIColor.darkGray
-        //geo.firstMaterial?.emission.intensity = 0.5
         geo.firstMaterial?.lightingModel = .phong
         geo.firstMaterial?.shininess = 70
         geo.firstMaterial?.specular.contents = UIColor.white
+        geo.firstMaterial?.specular.intensity = 500
         geo.firstMaterial?.diffuse.contents = UIColor.white
     }
+    //Create a node containing a wing and rotate it around the z axis to allow for the creation of the 4 wings
     private func createWing(rotation:Float) -> SCNNode {
+        //Create the wing, which is just a rectangle
         let nodeWing = SCNNode()
         let body = SCNBox(width: 6, height: 0.1, length: 4, chamferRadius: 0)
         setMaterials(body)
-        print(body.materials)
+        //print(body.materials)
         nodeWing.geometry = body
         
-        //nodeWing.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: nodeWing, options: nil))
-        //nodeWing.physicsBody?.categoryBitMask = PhysicsCategory.Ship
-        //nodeWing.physicsBody?.contactTestBitMask = PhysicsCategory.Orb
-        
+        //Create the wing tip which is another rectangle but it is rotated 45 degrees and at the end of the rest of the wing to form a point
         let nodeWingTip = SCNNode()
         let wingTipGeo = SCNBox(width: sqrt(8), height: 0.1, length: sqrt(8), chamferRadius: 0)
         setMaterials(wingTipGeo)
@@ -75,10 +75,6 @@ class SpaceShip: SCNNode{
         nodeWingTip.geometry = wingTipGeo
         nodeWingTip.position.x = 3
         nodeWingTip.rotation = SCNVector4(0,1,0,GLKMathDegreesToRadians(45))
-        
-        //nodeWingTip.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: wingTipGeo, options: nil))
-        //nodeWingTip.physicsBody?.categoryBitMask = PhysicsCategory.Ship
-        //nodeWingTip.physicsBody?.contactTestBitMask = PhysicsCategory.Orb
         
         nodeWing.addChildNode(nodeWingTip)
         
@@ -104,11 +100,11 @@ class SpaceShip: SCNNode{
         node.scale = SCNVector3(x:1,y:1,z:2)
         return node
     }
-
+    //Setter for the keysPressed variable
     func setKeysDown(_ keysPressed:UInt8){
         keysDown = keysPressed
     }
-    
+    //Ensure the space ship does not go off screen
     func keepInBounds() {
         if position.x < -X_BOUND {
             position.x = -X_BOUND
@@ -123,6 +119,7 @@ class SpaceShip: SCNNode{
         }
     }
     
+    //Called before each frame is rendered to update the position of the ship assuming the same keys are still down
     func tick(elapsed: TimeInterval){
         
         if keysDown & ArrowKeys.VERT == ArrowKeys.UP{
