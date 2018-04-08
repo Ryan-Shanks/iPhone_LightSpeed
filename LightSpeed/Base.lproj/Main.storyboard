@@ -55,17 +55,27 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ryan Shanks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOl-aI-PMi">
+                                <rect key="frame" x="20" y="335" width="90" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9ov-Dm-isU" firstAttribute="centerY" secondItem="iJd-gS-jQy" secondAttribute="centerY" multiplier="4/3" id="0ao-rF-xtk"/>
+                            <constraint firstItem="asI-25-wmw" firstAttribute="trailing" secondItem="fOl-aI-PMi" secondAttribute="trailing" constant="557" id="7Fs-vX-dhF"/>
+                            <constraint firstItem="fOl-aI-PMi" firstAttribute="top" secondItem="1lr-w8-PKF" secondAttribute="bottom" constant="110.5" id="8oZ-Fs-9fq"/>
                             <constraint firstItem="OiC-NZ-562" firstAttribute="centerY" secondItem="iJd-gS-jQy" secondAttribute="centerY" multiplier="1/2" id="AeR-fw-kZ3"/>
                             <constraint firstItem="1lr-w8-PKF" firstAttribute="top" secondItem="OiC-NZ-562" secondAttribute="bottom" id="DFS-ER-YZ9"/>
+                            <constraint firstItem="asI-25-wmw" firstAttribute="bottom" secondItem="fOl-aI-PMi" secondAttribute="bottom" constant="20" id="DgP-2x-n1f"/>
                             <constraint firstItem="9ov-Dm-isU" firstAttribute="centerX" secondItem="iJd-gS-jQy" secondAttribute="centerX" id="LXA-l4-O9m"/>
                             <constraint firstItem="9ov-Dm-isU" firstAttribute="top" secondItem="1lr-w8-PKF" secondAttribute="bottom" id="NYp-zu-b8c"/>
                             <constraint firstItem="OiC-NZ-562" firstAttribute="centerX" secondItem="iJd-gS-jQy" secondAttribute="centerX" id="V9l-Jv-3JB"/>
                             <constraint firstItem="1lr-w8-PKF" firstAttribute="leading" secondItem="asI-25-wmw" secondAttribute="leading" id="bFm-G9-mPJ"/>
                             <constraint firstItem="asI-25-wmw" firstAttribute="bottom" secondItem="9ov-Dm-isU" secondAttribute="bottom" constant="100" id="m5r-T0-cXA"/>
+                            <constraint firstItem="fOl-aI-PMi" firstAttribute="leading" secondItem="asI-25-wmw" secondAttribute="leading" constant="20" id="u7H-pd-hWu"/>
                             <constraint firstItem="asI-25-wmw" firstAttribute="trailing" secondItem="1lr-w8-PKF" secondAttribute="trailing" id="yRA-u4-PNo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="asI-25-wmw"/>
