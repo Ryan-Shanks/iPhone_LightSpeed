@@ -14,7 +14,7 @@ class ControlOverlay: SKScene {
     var touches:[UITouch: UInt8] = [:]
     
     func setOrbsPassed(_ passed:Int) {
-        (childNode(withName: "orbsPassed") as! SKLabelNode).text = String(passed)
+        (childNode(withName: "orbsPassed") as! SKLabelNode).text = "Score: " + String(passed)
     }
     
     //Convert the nodes name to one of the ArrowKeys options, or 0 for none

@@ -62,7 +62,7 @@ class GameViewController: UIViewController{
         scnView.scene = scene
         
         // true allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -78,6 +78,7 @@ class GameViewController: UIViewController{
         controls?.game = game
         scnView.overlaySKScene = controls
         game?.controls = controls
+        scene.physicsWorld.contactDelegate = game
     }
     
     override var shouldAutorotate: Bool {

@@ -9,7 +9,7 @@
 
 import Foundation
 import SceneKit
-class SpaceShip: SCNNode {
+class SpaceShip: SCNNode{
     
     private var vertRotationNode = SCNNode() // easier to combine rotations if we just stick everything in this node, apply some rotations here and some on the main one
     
@@ -43,6 +43,7 @@ class SpaceShip: SCNNode {
         physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: self, options: nil))
         physicsBody?.categoryBitMask = PhysicsCategory.Ship
         physicsBody?.contactTestBitMask = PhysicsCategory.Orb
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,12 +64,22 @@ class SpaceShip: SCNNode {
         print(body.materials)
         nodeWing.geometry = body
         
+        nodeWing.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: body, options: nil))
+        nodeWing.physicsBody?.categoryBitMask = PhysicsCategory.Ship
+        nodeWing.physicsBody?.contactTestBitMask = PhysicsCategory.Orb
+        
         let nodeWingTip = SCNNode()
         let wingTipGeo = SCNBox(width: sqrt(8), height: 0.1, length: sqrt(8), chamferRadius: 0)
         setMaterials(wingTipGeo)
+        
         nodeWingTip.geometry = wingTipGeo
         nodeWingTip.position.x = 3
         nodeWingTip.rotation = SCNVector4(0,1,0,GLKMathDegreesToRadians(45))
+        
+        nodeWingTip.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: wingTipGeo, options: nil))
+        nodeWingTip.physicsBody?.categoryBitMask = PhysicsCategory.Ship
+        nodeWingTip.physicsBody?.contactTestBitMask = PhysicsCategory.Orb
+        
         nodeWing.addChildNode(nodeWingTip)
         
         let rotationNode = SCNNode()

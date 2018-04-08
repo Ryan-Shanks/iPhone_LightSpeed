@@ -9,8 +9,8 @@
 import Foundation
 
 struct PhysicsCategory {
-    static let None: Int = 0
+    static let None      : Int = 0
     static let All       : Int = Int.max
-    static let Orb: Int = 0b1
+    static let Orb       : Int = 0b1
     static let Ship      : Int = 0b10
 }

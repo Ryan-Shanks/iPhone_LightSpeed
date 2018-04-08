@@ -18,7 +18,7 @@ struct ArrowKeys{
     static let VERT:UInt8 = UP|DOWN
     static let HORIZ:UInt8 = RIGHT|LEFT
 }
-class GameLogic:NSObject, SCNSceneRendererDelegate {
+class GameLogic:NSObject, SCNSceneRendererDelegate, SCNPhysicsContactDelegate {
 
     private var orbsInFront:[LightOrb] = []
     private var orbsBehind: [LightOrb] = []
@@ -70,5 +70,10 @@ class GameLogic:NSObject, SCNSceneRendererDelegate {
     }
     func handleKeys(_ keysPressed:UInt8){
         ship.setKeysDown(keysPressed)
+    }
+    
+    //MARK: Physics contact delegate methods
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        print("Ship has been hit")
     }
 }

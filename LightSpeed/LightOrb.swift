@@ -16,7 +16,7 @@ class LightOrb: SCNNode {
     
     init(orbsPassed: Int){
         super.init()
-        let sphere = SCNSphere(radius: 1.0)
+        let sphere = SCNSphere(radius: 0.75)
         geometry = sphere
         sphere.firstMaterial?.lightingModel = .phong
         let colour = LightOrb.colorOptions[Int(randBetween(0.0, Float(LightOrb.colorOptions.count-1)))]
@@ -24,7 +24,7 @@ class LightOrb: SCNNode {
         sphere.firstMaterial?.ambient.contents = colour
         sphere.firstMaterial?.diffuse.contents = colour
         
-        physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: self, options: nil))
+        physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: sphere, options: nil))
         physicsBody?.categoryBitMask = PhysicsCategory.Orb
         physicsBody?.contactTestBitMask = PhysicsCategory.Ship
         
@@ -61,7 +61,7 @@ class LightOrb: SCNNode {
     }
     private func getDuration(_ orbsPassed:Int) -> Double {
         let distance = 120.0
-        let speed = randBetween(15, 20+2*sqrt(Float(orbsPassed)))
+        let speed = randBetween(15, 20+5*sqrt(Float(orbsPassed)))
         print("Duration ", distance / Double(speed))
         return distance / Double(speed)
     }
