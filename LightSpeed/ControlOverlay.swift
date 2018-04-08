@@ -2,7 +2,7 @@
 //  ControlsOverlay.swift
 //  LightSpeed
 //
-//  Created by user136098 on 4/6/18.
+//  Created by Ryan Shanks on 4/6/18.
 //  Copyright © 2018 wlu. All rights reserved.
 //
 

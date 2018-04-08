@@ -2,7 +2,7 @@
 //  SpaceShip.swift
 //  LightSpeed
 //
-//  Created by user136098 on 3/27/18.
+//  Created by Ryan Shanks on 3/27/18.
 //  Represents the ship that the user can fly, which can move in 2 dimensions in the 3d space
 //  Copyright © 2018 wlu. All rights reserved.
 //

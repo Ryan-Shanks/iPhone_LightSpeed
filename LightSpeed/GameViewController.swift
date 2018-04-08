@@ -2,7 +2,7 @@
 //  GameViewController.swift
 //  LightSpeed
 //
-//  Created by user136098 on 3/27/18.
+//  Created by Ryan Shanks on 3/27/18.
 //  Copyright © 2018 wlu. All rights reserved.
 //
 
